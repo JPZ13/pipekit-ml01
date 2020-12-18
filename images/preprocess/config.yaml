@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: pipekit-ml01-
+spec:
+  entrypoint: pipekit-ml01
+  templates:
+  - name: pipekit-ml01
+    steps:
+    - - name: preprocess
+        template: preprocess
+
+  - name: preprocess
+    container:
+      image: benb111/pipekit:pipekit-ml01-preprocess
+    outputs:
+      artifacts:
+      - name: pipekit-ml01-preprocess
+        path: /tmp/
