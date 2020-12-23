@@ -8,14 +8,14 @@ spec:
   templates:
   - name: pipekit-ml01
     steps:
-    - - name: process
+    - - name: preprocess
         template: preprocess
-      - name: train
-        template: train
-        arguments:
-          artifacts:
-          - name: message
-            from: "{{steps.process.outputs.artifacts.pipekit-ml01}}"
+      # - name: train
+      #   template: train
+      #   arguments:
+      #     artifacts:
+      #     - name: message
+      #       from: "{{steps.process.outputs.artifacts.pipekit-ml01}}"
 
   - name: preprocess
     container:
@@ -24,10 +24,10 @@ spec:
       artifacts:
       - name: pipekit-ml01
         path: /tmp/
-  - name: train
-    inputs:
-      artifacts:
-      - name: pipekit-ml01
-        path: /tmp/
-    container:
-      image: pipekit13/ml01-train
+  # - name: train
+  #   inputs:
+  #     artifacts:
+  #     - name: pipekit-ml01
+  #       path: /tmp/
+  #   container:
+  #     image: pipekit13/ml01-train
