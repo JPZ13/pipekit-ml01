@@ -12,6 +12,10 @@ spec:
         template: preprocess
       - name: train
         template: train
+        arguments:
+          artifacts:
+          - name: message
+            from: "{{steps.preprocess.outputs.artifacts.pipekit-ml01}}"
 
   - name: preprocess
     container:
