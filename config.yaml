@@ -2,11 +2,11 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
-  generateName: pipekit-ml01-
+  generateName: ml-training
 spec:
-  entrypoint: pipekit-ml01
+  entrypoint: ml-pipeline
   templates:
-  - name: pipekit-ml01
+  - name: ml-pipeline
     steps:
     - - name: process
         template: preprocess
