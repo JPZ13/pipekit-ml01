@@ -14,15 +14,15 @@ spec:
 
   - name: preprocess
     container:
-      image: benb111/pipekit:pipekit-ml01-preprocess
+      image: pipekit13/ml01-preprocess
     outputs:
       artifacts:
-      - name: pipekit-ml01-preprocess
+      - name: pipekit-ml01
         path: /tmp/
   - name: train
     inputs:
       artifacts:
-      - name: pipekit-ml01-preprocess
+      - name: pipekit-ml01
         path: /tmp/
     container:
-      image: benb111/pipekit:pipekit-ml01-train
+      image: pipekit13/ml01-train
