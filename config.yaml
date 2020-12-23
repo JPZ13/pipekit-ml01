@@ -1,21 +1,16 @@
-# Preprocessing and image training
 apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
-  generateName: ml-training
+  generateName: pipekit-ml01-
 spec:
-  entrypoint: ml-pipeline
+  entrypoint: pipekit-ml01
   templates:
-  - name: ml-pipeline
+  - name: pipekit-ml01
     steps:
-    - - name: process
+    - - name: preprocess
         template: preprocess
       - name: train
         template: train
-        arguments:
-          artifacts:
-          - name: message
-            from: "{{steps.process.outputs.artifacts.ml01}}"
 
   - name: preprocess
     container:
@@ -31,3 +26,4 @@ spec:
         path: /tmp/
     container:
       image: pipekit13/ml01-train
+
