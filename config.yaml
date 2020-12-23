@@ -9,6 +9,8 @@ spec:
     steps:
     - - name: preprocess
         template: preprocess
+      - name: train
+        template: train
 
   - name: preprocess
     container:
@@ -17,3 +19,10 @@ spec:
       artifacts:
       - name: pipekit-ml01-preprocess
         path: /tmp/
+  - name: train
+    inputs:
+      artifacts:
+      - name: pipekit-ml01-preprocess
+        path: /tmp/
+    container:
+      image: benb111/pipekit:pipekit-ml01-train
