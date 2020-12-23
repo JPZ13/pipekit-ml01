@@ -15,19 +15,19 @@ spec:
         arguments:
           artifacts:
           - name: message
-            from: "{{steps.process.outputs.artifacts.pipekit-ml01}}"
+            from: "{{steps.process.outputs.artifacts.ml01}}"
 
   - name: preprocess
     container:
       image: pipekit13/ml01-preprocess
     outputs:
       artifacts:
-      - name: pipekit-ml01
+      - name: ml01
         path: /tmp/
   - name: train
     inputs:
       artifacts:
-      - name: pipekit-ml01
+      - name: ml01
         path: /tmp/
     container:
       image: pipekit13/ml01-train
